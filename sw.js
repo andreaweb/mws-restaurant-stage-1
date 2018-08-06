@@ -7,26 +7,31 @@ const OFFLINE_URL = 'index.html';
 
 
 //first event of service worker lifecycle
-self.addEventListener('install', event => {
+self.addEventListener('install', function(event) {
   event.waitUntil(
-    //make a call to offline page while ensuring the url is unique through createCacheBustedRequest
-    fetch(createCacheBustedRequest(OFFLINE_URL)).then(function(response) {
-      return caches.open(CURRENT_CACHES.offline).then(function(cache) {
-        return cache.put(OFFLINE_URL, response);
-      });
+    caches.open(CURRENT_CACHES.offline).then(function(cache) {
+      return cache.addAll([
+        '/',
+          './index.html',
+          './restaurant.html',
+          './css/styles.css',
+          './js/dbhelper.js',
+          './js/main.js',
+          './js/restaurant_info.js',
+          './data/restaurants.json',
+          './img/1.jpg',
+          './img/2.jpg',
+          './img/3.jpg',
+          './img/4.jpg',
+          './img/5.jpg',
+          './img/6.jpg',
+          './img/7.jpg',
+          './img/8.jpg',
+          './img/9.jpg',
+          './img/10.jpg',
+      ]);
     })
   );
-
-//this way we can update our offline page with a new version later
-function createCacheBustedRequest(url) {
-  let request = new Request(url, {cache: 'reload'});
-  if ('cache' in request) {
-    return request;
-  }
-  let bustedUrl = new URL(url, self.location.href);
-  bustedUrl.search += (bustedUrl.search ? '&' : '') + 'cachebust=' + Date.now();
-  return new Request(bustedUrl);
-}
 });
 
 //deletes oudated/unused caches because a sw can only be activated if all tabs of an earlier version are closed
@@ -51,13 +56,14 @@ self.addEventListener('activate', event => {
 
 //fetch events after sw is installed and user navigates to different page or refreshes
 self.addEventListener('fetch', event => {
-  if (event.request.mode === 'navigate' ||
-      (event.request.method === 'GET' &&
-       event.request.headers.get('accept').includes('text/html'))) {
-    event.respondWith(
-      fetch(event.request).catch(error => {
-        return caches.match(OFFLINE_URL);
-      })
-    );
+  if (event.request.mode === 'navigate' 
+    || (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html'))
+    )
+  {
+      event.respondWith(
+        fetch(event.request).catch(error => {
+          return caches.match(event.request);
+        })
+      );
   }
 });
