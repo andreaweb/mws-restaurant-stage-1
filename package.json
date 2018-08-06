@@ -16,7 +16,4 @@
     "url": "https://github.com/andreaweb/mws-restaurant-stage-1/issues"
   },
   "homepage": "https://github.com/andreaweb/mws-restaurant-stage-1#readme",
-  "dependencies": {
-    "browser-sync": "^2.24.6"
-  }
 }
