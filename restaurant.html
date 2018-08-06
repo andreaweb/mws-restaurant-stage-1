@@ -19,6 +19,7 @@
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
     <!-- Beginning breadcrumb -->
+    <!-- added aria-label -->
     <ul id="breadcrumb" aria-label="breadcrumb">
       <li><a href="/">Home</a></li>
     </ul>
@@ -30,13 +31,16 @@
   <!-- Beginning main -->
   <main id="maincontent">
     <!-- Beginning map -->
+    <!-- added aria-label and role-->
     <section id="map-container" aria-label="map">
       <div id="map" role="application"></div>
     </section>
     <!-- End map -->
     <!-- Beginning restaurant -->
+    <!-- added role -->
     <section id="restaurant-container" role='article'>
       <h1 id="restaurant-name"></h1>
+      <!-- added alt -->
       <img id="restaurant-img" alt="Restaurant's Picture">
       <p id="restaurant-cuisine"></p>
       <p id="restaurant-address"></p>
@@ -44,6 +48,7 @@
     </section>
     <!-- end restaurant -->
     <!-- Beginning reviews -->
+    <!-- added role -->
     <section id="reviews-container" role='article'>
       <ul id="reviews-list"></ul>
     </section>
