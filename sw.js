@@ -10,14 +10,14 @@ console.log("file added");
 self.addEventListener('install', event => {
   event.waitUntil(
     //make a call to offline page while ensuring the url is unique through createCacheBustedRequest
-    //this way we can update our offline page with a new version later
     fetch(createCacheBustedRequest(OFFLINE_URL)).then(function(response) {
       return caches.open(CURRENT_CACHES.offline).then(function(cache) {
         return cache.put(OFFLINE_URL, response);
       });
     })
   );
-
+  
+//this way we can update our offline page with a new version later
 function createCacheBustedRequest(url) {
   let request = new Request(url, {cache: 'reload'});
   if ('cache' in request) {
