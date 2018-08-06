@@ -4,7 +4,7 @@ let CURRENT_CACHES = {
 }
 
 const OFFLINE_URL = 'index.html';
-console.log("file added");
+
 
 //first event of service worker lifecycle
 self.addEventListener('install', event => {
@@ -16,7 +16,7 @@ self.addEventListener('install', event => {
       });
     })
   );
-  
+
 //this way we can update our offline page with a new version later
 function createCacheBustedRequest(url) {
   let request = new Request(url, {cache: 'reload'});
