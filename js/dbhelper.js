@@ -13,7 +13,7 @@ class DBHelper {
   }
 */
   static get DATABASE_URL(){
-    return '../data/restaurants.json';
+    return './data/restaurants.json';
   }
   /**
    * Fetch all restaurants.
