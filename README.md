@@ -1,5 +1,9 @@
 # Advanced Front-End Nanodegree - Project #3
 
+## Check it out!
+https://andreaweb.github.io/mws-restaurant-stage-1/
+![Print](img/print.jpg)
+
 ## Project Overview
 
 For this project, I converted a static webpage to a mobile-ready web application, taking a static design that lacks accessibility and converting the design to be responsive on different sized displays and accessible for screen reader use. I also added a service worker to begin the process of creating a seamless offline experience for the users.
